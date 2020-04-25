@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       loginForm: {
         username: 'Jay',
@@ -40,18 +40,18 @@ export default {
   },
   methods: {
     // 重置表单
-    resetLoginForm () {
+    resetLoginForm() {
       this.$refs.loginFormRef.resetFields()
     },
     // 表单预验证
-    login () {
+    login() {
       this.$refs.loginFormRef.validate(async valid => {
         // valid为布尔值，如果验证通过则为true
         if (!valid) return
         // axios返回的结果为一个promise对象，就可以用await简化操作，用了await就要在最近的函数前加上async
         // 用解构赋值接收data数据，并赋值给res
-        const { data: res } = await this.$http.post('user/login', this.loginForm)
-        if (res.err === -1) return this.$message.error('登录失败')
+        const { data: res } = await this.$http.post('login/login', this.loginForm)
+        if (res.err === -1) return this.$message.error(res.msg)
         this.$message.success('登录成功')
         window.sessionStorage.setItem('token', res.token)
         this.$router.push('/home')
