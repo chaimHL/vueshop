@@ -5,6 +5,8 @@ import axios from 'axios'
 import './plugins/element.js'
 import './assets/iconfont/iconfont.css'
 import './assets/less/global.less'
+// 导入第三方的树形表格
+import TreeTable from 'vue-table-with-tree-grid'
 
 // 设置请求根路径
 axios.defaults.baseURL = 'http://192.168.1.107:3000/'
@@ -21,6 +23,9 @@ axios.interceptors.request.use(config => {
 Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
+
+// 第三方树形表格
+Vue.component('tree-table', TreeTable)
 
 new Vue({
   router,

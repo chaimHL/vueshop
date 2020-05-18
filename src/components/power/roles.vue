@@ -16,7 +16,7 @@
         </el-col>
       </el-row>
       <!-- 角色列表区域 -->
-     <el-table :data="roleList" stripe border>
+      <el-table :data="roleList" stripe border>
         <!-- 展开列 -->
         <el-table-column type="expand">
           <template slot-scope="scope">
