@@ -14,14 +14,26 @@ import 'quill/dist/quill.core.css' // import styles
 import 'quill/dist/quill.snow.css' // for snow theme
 import 'quill/dist/quill.bubble.css' // for bubble theme
 
+// 导入 NProgress 包对应的js和css
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+
 // 设置请求根路径
 axios.defaults.baseURL = 'http://192.168.1.107:3000/'
 
 // axios请求拦截
 axios.interceptors.request.use(config => {
+  // 展示进度条
+  NProgress.start()
   // 为请求头对象(config.headers)，添加token验证的Authorization字段
   config.headers.Authorization = window.sessionStorage.getItem('token')
   // 最后必须return config
+  return config
+})
+// axios响应拦截
+axios.interceptors.response.use(config => {
+  // 隐藏进度条
+  NProgress.done()
   return config
 })
 

@@ -1,17 +1,23 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Login from '../components/login.vue'
-import Home from '../components/home.vue'
-import Welcome from '../components/welcome.vue'
-import Users from '../components/users/user.vue'
-import Rigths from '../components/power/rights.vue'
-import Roles from '../components/power/roles.vue'
-import Cates from '../components/goods/cates.vue'
-import Params from '../components/goods/params.vue'
-import Lists from '../components/goods/lists.vue'
-import Add from '../components/goods/add.vue'
-import Order from '../components/order/order.vue'
-import Reports from '../components/report/reports.vue'
+// 按需加载路由,webpackChunkName的值相同的组件会被打包在同个异步块 (chunk) 中
+// 原本这样写的：import Login from '../components/login.vue'
+const Login = () => import(/* webpackChunkName: "Login-Home-Welcome" */ '../components/login.vue')
+const Home = () => import(/* webpackChunkName: "Login-Home-Welcome" */ '../components/home.vue')
+const Welcome = () => import(/* webpackChunkName: "Login-Home-Welcome" */ '../components/welcome.vue')
+
+const Users = () => import(/* webpackChunkName: "Users-Rigths-Roles" */ '../components/users/user.vue')
+const Rigths = () => import(/* webpackChunkName: "Users-Rigths-Roles" */ '../components/power/rights.vue')
+const Roles = () => import(/* webpackChunkName: "Users-Rigths-Roles" */ '../components/power/roles.vue')
+
+const Cates = () => import(/* webpackChunkName: "Cates-Params" */ '../components/goods/cates.vue')
+const Params = () => import(/* webpackChunkName: "Cates-Params" */ '../components/goods/params.vue')
+
+const Lists = () => import(/* webpackChunkName: "Lists-Add" */ '../components/goods/lists.vue')
+const Add = () => import(/* webpackChunkName: "Lists-Add" */ '../components/goods/add.vue')
+
+const Order = () => import(/* webpackChunkName: "Order-Reports" */ '../components/order/order.vue')
+const Reports = () => import(/* webpackChunkName: "Order-Reports" */ '../components/report/reports.vue')
 
 Vue.use(VueRouter)
 
